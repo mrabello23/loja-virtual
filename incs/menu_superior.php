@@ -58,22 +58,6 @@
 						</li>
 					</ul>
 				</li>
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-						<span class="glyphicon glyphicon-cog" aria-hidden="true"></span> 
-						Administração <span class="caret"></span>
-					</a>
-					<ul class="dropdown-menu">
-						<li><a href="#">Ação 1</a></li>
-						<li><a href="#">Ação 2</a></li>
-						<li role="separator" class="divider"></li>
-						<li>
-							<a href="#">
-								<span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Sair
-							</a>
-						</li>
-					</ul>
-				</li>
 			</ul>
 		</div><!-- /.navbar-collapse -->
 	</div><!-- /.container -->

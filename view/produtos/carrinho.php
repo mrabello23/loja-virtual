@@ -5,25 +5,28 @@
 
 	$produto = array(
 		array(
-			"nome" => "produto 1",
-			"modelo" => "modelo 1",
-			"marca" => "marca 1",
-			"quantidade" => "1",
-			"valor" => "200"
+			"id" 		 => 1,
+			"nome" 		 => "produto 1",
+			"modelo" 	 => "modelo 1",
+			"marca" 	 => "marca 1",
+			"quantidade" => 1,
+			"valor" 	 => 200
 		),
 		array(
-			"nome" => "produto 2",
-			"modelo" => "modelo 3",
-			"marca" => "marca 2",
-			"quantidade" => "1",
-			"valor" => "150"
+			"id" 		 => 2,
+			"nome" 		 => "produto 2",
+			"modelo" 	 => "modelo 3",
+			"marca" 	 => "marca 2",
+			"quantidade" => 1,
+			"valor" 	 => 150
 		),
 		array(
-			"nome" => "produto 3",
-			"modelo" => "modelo 2",
-			"marca" => "marca 3",
-			"quantidade" => "2",
-			"valor" => "50"
+			"id" 		 => 3,
+			"nome" 		 => "produto 3",
+			"modelo" 	 => "modelo 2",
+			"marca" 	 => "marca 3",
+			"quantidade" => 2,
+			"valor" 	 => 50
 		),
 	);
 
