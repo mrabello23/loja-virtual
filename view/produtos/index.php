@@ -27,7 +27,7 @@
 
 	<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 		<div class="row">
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+			<div class="col-lg-7 col-md-7 col-sm-6 col-xs-12">
 				<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 					<!-- Indicators -->
 					<ol class="carousel-indicators">
@@ -39,19 +39,19 @@
 					<!-- Wrapper for slides -->
 					<div class="carousel-inner" role="listbox">
 						<div class="item active">
-							<img src="http://placehold.it/460x350" alt="">
+							<img src="http://placehold.it/620x350" alt="">
 							<div class="carousel-caption">
 								<h3>Imagem 1</h3>
 							</div>
 						</div>
 						<div class="item">
-							<img src="http://placehold.it/460x350" alt="">
+							<img src="http://placehold.it/620x350" alt="">
 							<div class="carousel-caption">
 								<h3>Imagem 2</h3>
 							</div>
 						</div>
 						<div class="item">
-							<img src="http://placehold.it/460x350" alt="">
+							<img src="http://placehold.it/620x350" alt="">
 							<div class="carousel-caption">
 								<h3>Imagem 3</h3>
 							</div>
@@ -70,7 +70,7 @@
 				</div>
 			</div>
 
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 pull-right">
+			<div class="col-lg-5 col-md-5 col-sm-6 col-xs-12 pull-right">
 				<div class="thumbnail">
 					<div class="caption">
 						<h3 class="pull-right">R$ 24,99</h3>
@@ -80,11 +80,19 @@
 								<li><strong>Modelo:</strong> <?=ucwords(strtolower($produto["dados"][0]["modelo"]));?></li>
 								<li><strong>Categoria:</strong> <?=ucwords(strtolower($produto["dados"][0]["categoria"]));?></li>
 							</ul>
+							<p>
+								Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 
+								3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
+							</p>
 						</p>
 						<hr/>
 						<div class="ratings">
 							<p class="pull-right">
-								<a href="<?=BASE_URL;?>acoes/carrinho.php?id=<?=$id;?>" class="btn btn-primary btn-sm">Adicionar</a>
+								<?php if (!empty($_SESSION["totalProduto"])): ?>
+									<a href="<?=BASE_URL;?>acoes/carrinho.php?acao=remover&id=<?=$id;?>" class="btn btn-danger btn-sm">Remover</a>
+								<?php endif; ?>
+
+								<a href="<?=BASE_URL;?>acoes/carrinho.php?acao=adicionar&id=<?=$id;?>" class="btn btn-primary btn-sm">Adicionar</a>
 							</p>
 							<p> Produto em estoque </p>
 						</div>

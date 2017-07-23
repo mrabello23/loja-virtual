@@ -7,8 +7,12 @@ $acao = strip_tags($_GET["acao"]);
 $produtos = new Produto();
 $produto = $produtos->listar("", 0, $id);
 
-if (!empty($produto[0])) {
-	$_SESSION["nomeProduto"][$id] = $produto[0]["nome"];
+if (!empty($produto["dados"][0])) {
+	$_SESSION["nomeProduto"][$id] = $produto["dados"][0]["nome"];
+
+	if (!isset($_SESSION["totalProduto"][$id])) {
+		$_SESSION["totalProduto"][$id] = 0;
+	}
 
 	switch ($acao) {
 		case "adicionar":
@@ -17,6 +21,8 @@ if (!empty($produto[0])) {
 		case "remover":
 			if ($_SESSION["totalProduto"][$id] > 0) {
 				$_SESSION["totalProduto"][$id]--;
+			} else {
+				unset($_SESSION["totalProduto"][$id]);
 			}
 		break;
 		case "limpar":

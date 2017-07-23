@@ -5,8 +5,8 @@ $httpServer = "http://".$_SERVER["SERVER_NAME"]."/";
 $rootPath = realpath($_SERVER["DOCUMENT_ROOT"]);
 
 if ($_SERVER["SERVER_NAME"] == "localhost") {
-	$httpServer.= "projetos/loja/";
-	$rootPath.= "/projetos/loja/";
+	$httpServer.= "projetos/loja-virtual/";
+	$rootPath.= "/projetos/loja-virtual/";
 }
 
 define('REALPATH', $rootPath);

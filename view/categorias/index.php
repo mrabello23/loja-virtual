@@ -45,7 +45,7 @@
 							<hr/>
 							<div class="ratings">
 								<p class="pull-right">
-									<a href="<?=BASE_URL;?>acoes/carrinho.php?id=<?=$value["id_produto"];?>" class="btn btn-primary btn-sm">
+									<a href="<?=BASE_URL;?>acoes/carrinho.php?acao=adicionar&id=<?=$value["id_produto"];?>" class="btn btn-primary btn-sm">
 										Adicionar
 									</a>
 								</p>

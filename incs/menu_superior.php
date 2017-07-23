@@ -34,11 +34,25 @@
 						Carrinho de Compras <span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu">
-						<li><a href="#">Ação 1</a></li>
-						<li><a href="#">Ação 2</a></li>
+						<?php if (!empty($_SESSION["nomeProduto"]) && !empty($_SESSION["totalProduto"])): ?>
+							<?php foreach ($_SESSION["nomeProduto"] as $key => $value): ?>						
+								<li>
+									<a href="#">
+										<?=str_pad($_SESSION["totalProduto"][$key], 2, "0", STR_PAD_LEFT)."x - ".ucwords(strtolower($value));?>
+									</a>
+								</li>
+							<?php endforeach; ?>
+						<?php else: ?>
+							<li>
+								<a href="#">
+									Sem produtos no carrinho.
+								</a>
+							</li>
+						<?php endif; ?>
+
 						<li role="separator" class="divider"></li>
 						<li>
-							<a href="#">
+							<a href="<?=BASE_URL;?>view/produtos/carrinho.php">
 								<span class="glyphicon glyphicon-check" aria-hidden="true"></span> Finalizar
 							</a>
 						</li>
