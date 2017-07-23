@@ -22,4 +22,4 @@ if(isset($_POST) && !empty($_POST['class']) && !empty($_POST['method']) && !empt
 	}
 }
 
-header("Location:".$base_url."view/".$path."/");
+header("Location:".BASE_URL."view/".$path."/");

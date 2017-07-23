@@ -9,40 +9,44 @@ class Produto {
 		$this->utils = new Utils();
 	}
 
-	public function listar($url, $pagina, $id = ""){
+	public function listar($url = "", $pagina = 0, $id = ""){
 		$dados = array();
+		$dados["dados"] = $this->model->listar($id);
 
 		/** Paginação */
-		$inicio = 1;
-		$limite = 12;
-		$totalPorPagina = 12;
+		if (!empty($url)) {
+			$inicio = 1;
+			$limite = 12;
+			$totalPorPagina = 12;
 
-		if ($pagina > 1) {
-			$limite = $pagina * $limite;
-			$inicio = $limite - ($totalPorPagina - 1);
+			if ($pagina > 1) {
+				$limite = $pagina * $limite;
+				$inicio = $limite - ($totalPorPagina - 1);
+			}
+
+			$dados["paginacao"] = $this->utils->paginacao($url, $inicio, count($dados["dados"]), $limite);
 		}
-
-		$dados["dados"] = $this->model->listar($id);
-		$dados["paginacao"] = $this->utils->paginacao($url, $inicio, count($dados["dados"]), $limite);
 
 		return $dados;
 	}
 
-	public function listarPorCategoria($url, $pagina, $categoria){
+	public function listarPorCategoria($url = "", $pagina = 0, $categoria){
 		$dados = array();
+		$dados["dados"] = $this->model->listarPorCategoria($categoria);
 
 		/** Paginação */
-		$inicio = 1;
-		$limite = 12;
-		$totalPorPagina = 12;
+		if (!empty($url)) {
+			$inicio = 1;
+			$limite = 12;
+			$totalPorPagina = 12;
 
-		if ($pagina > 1) {
-			$limite = $pagina * $limite;
-			$inicio = $limite - ($totalPorPagina - 1);
+			if ($pagina > 1) {
+				$limite = $pagina * $limite;
+				$inicio = $limite - ($totalPorPagina - 1);
+			}
+
+			$dados["paginacao"] = $this->utils->paginacao($url, $inicio, count($dados["dados"]), $limite);
 		}
-
-		$dados["dados"] = $this->model->listarPorCategoria($categoria);
-		$dados["paginacao"] = $this->utils->paginacao($url, $inicio, count($dados["dados"]), $limite);
 
 		return $dados;
 	}
