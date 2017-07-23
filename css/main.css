@@ -1,0 +1,36 @@
+html, body {
+	padding: 0;
+	margin: 0;
+	border: none;
+	font-family: 'Montserrat', 'Trebuchet MS', sans-serif;
+	font-size: 12px;
+}
+body {
+	padding-top: 70px;
+}
+.help {
+	cursor: help;
+}
+.bold{
+	font-weight: bold;
+}
+.navbar .navbar-nav .dropdown-menu a{
+	font-size: 12px;
+}
+footer {
+	background-color: #101010;
+	width: 100%;
+	height: auto;
+	position: absolute;
+	left: 0;
+	color: #eee;
+	font-size: 12px;
+	margin-top: 25px;
+}
+footer a {
+	color: #9d9d9d;
+	font-size: 12px;
+}
+footer a:hover {
+	color: #ffffff;
+}
