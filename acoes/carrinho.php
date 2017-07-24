@@ -19,7 +19,7 @@ if (!empty($produto["dados"][0])) {
 			$_SESSION["totalProduto"][$id]++;
 		break;
 		case "remover":
-			if ($_SESSION["totalProduto"][$id] > 0) {
+			if ($_SESSION["totalProduto"][$id] > 1) {
 				$_SESSION["totalProduto"][$id]--;
 			} else {
 				unset($_SESSION["totalProduto"][$id]);
