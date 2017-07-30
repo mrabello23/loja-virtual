@@ -162,27 +162,31 @@ class MYSQL extends Conexao {
 			}
 
 			if ($dados) {
-				if (!stristr($sql, "SELECT")) {
-					// Commit transaction
-					$retorno = mysqli_affected_rows($this->conn);
-					mysqli_commit($this->conn);
-				} else {
+				preg_match("/^\w*\s/i", $sql, $matches);
+				$retornoRegex = trim($matches[0]);
+
+				if ($retornoRegex == "SELECT") {
 					if (mysqli_num_rows($dados) > 0) {
-						// Caso SELECT monta o array de retorno dos dados
 						$retorno = array();
 
 						while ( $row = mysqli_fetch_assoc($dados) ) {
 							$retorno[] = $row;
 						}
 					}
+
+					mysqli_free_result($dados);
+					return $retorno;
+				} elseif ($retornoRegex == "INSERT") {
+					$retorno = mysqli_insert_id($this->conn);
+				} else {
+					$retorno = mysqli_affected_rows($this->conn);
 				}
-				
-				mysqli_free_result($dados);
+
+				// Commit transaction
+				mysqli_commit($this->conn);
+				return $retorno;
 			}
 		}
-
-		// echo "<pre>"; print_r($retorno); echo "</pre>";
-		return $retorno;
 	}
 
 	/*

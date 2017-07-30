@@ -1,20 +1,23 @@
-<?php 
+<?php
 require_once "../config.php";
 
 $_SESSION['msg_tipo'] = 'Erro';
 $_SESSION['msg'] = 'Ocorreu um erro ao alterar os dados.';
 
 if(isset($_POST) && !empty($_POST['class']) && !empty($_POST['method']) && !empty($_POST['path'])){
-	$class = strip_tags(base64_decode($_POST['class']));
-	$method = strip_tags(base64_decode($_POST["method"])); 
-	$path = strip_tags(base64_decode($_POST['path']));
+	$utils = new Utils();
+	$dadosPost = $utils->validarDados($_POST);
 
-	unset($_POST['class']);
-	unset($_POST["method"]);
-	unset($_POST['path']);
+	$class = base64_decode($dadosPost['class']);
+	$method = base64_decode($dadosPost["method"]);
+	$path = base64_decode($dadosPost['path']);
+
+	unset($dadosPost['class']);
+	unset($dadosPost["method"]);
+	unset($dadosPost['path']);
 
 	$dados = new $class();
-	$retorno = $dados->$method($_POST);
+	$retorno = $dados->$method($dadosPost);
 
 	if($retorno){
 		$_SESSION['msg_tipo'] = 'Sucesso';
@@ -22,4 +25,4 @@ if(isset($_POST) && !empty($_POST['class']) && !empty($_POST['method']) && !empt
 	}
 }
 
-header("Location:".BASE_URL."view/".$path."/");
+header("Location:".BASE_URL.$path);

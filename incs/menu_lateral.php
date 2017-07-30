@@ -1,6 +1,6 @@
 <?php $menu = new ConfiguracaoSistema(); ?>
 
-<div class="col-md-2 col-sm-2 col-xs-12">
+<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
 	<div class="panel panel-primary">
 		<div class="panel-heading">Menu Principal</div>
 		<div class="list-group">

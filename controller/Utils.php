@@ -1,6 +1,10 @@
 <?php
 class Utils{
-	public function validarDados(array $dataPost){
+	public function validarDados($dataPost){
+		if (!is_array($dataPost)) {
+			return trim(addslashes(strip_tags($dataPost)));
+		}
+
 		$retorno = array();
 
 		foreach ($dataPost as $key => $value) {
@@ -10,9 +14,7 @@ class Utils{
 		return $retorno;
 	}
 
-	public function upload(array $dados, $pathUpload = ''){
-		// echo "<pre>"; print_r($dados); echo "</pre>";exit;
-
+	public function upload(array $files, $pathUpload = ''){
 		// Tamanho máximo do arquivo (em Bytes)
 		$_UP['tamanho_maximo'] = (1024 * 1024) * 15; // 15 MB
 
@@ -23,16 +25,12 @@ class Utils{
 			'xlsx' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
 		);
 
-		$destinatarios = array(
-			"Admin" => 'desenvolvimento.fenix@portaldedocumentos.com.br'
-		);
-
 		$local = $pathUpload.date("Y_m_d");
 		$this->criarPasta($local);
 
 		$valida = 0;
 		$vazios = 0;
-		$total  = count($dados["arquivo"]["name"]);
+		$total  = count($files["arquivo"]["name"]);
 		$arquivos = array();
 		$retorno  = array(
 			"sucesso" => "", 
@@ -40,15 +38,15 @@ class Utils{
 			"arquivos" => $arquivos
 		);
 
-		if (is_array($dados['arquivo']['tmp_name'])) {
+		if (is_array($files['arquivo']['tmp_name'])) {
 			for ($i = 0; $i < $total; $i++) {
-				if ( empty($dados['arquivo']['tmp_name'][$i]) ) {
+				if ( empty($files['arquivo']['tmp_name'][$i]) ) {
 					$vazios++;
 					continue;
 				}
 
 				// Verificação do tipo de arquivo
-				if ( $dados['arquivo']['type'][$i] != $_UP['tipos_permitidos']["pdf"] ) {
+				if (!in_array($files['arquivo']['type'][$i], $_UP['tipos_permitidos'])) {
 					$retorno["msg"] = "Arquivo enviado não é PDF - Falha no documento: ".$i;
 					$retorno["sucesso"] = false;
 
@@ -56,23 +54,23 @@ class Utils{
 				}
 
 				// Faz a verificação do tamanho do arquivo
-				if ( $_UP['tamanho_maximo'] < $dados['arquivo']['size'][$i] ) {
-					$retorno["msg"] = "O arquivo enviado é muito grande.<br/>Limite".($_UP['tamanho_maximo'] / 1024)."<br/>Tamanho: ".($dados['arquivo']['size'][$i] / 1024)." - Falha no documento: ".$i;
+				if ( $_UP['tamanho_maximo'] < $files['arquivo']['size'][$i] ) {
+					$retorno["msg"] = "O arquivo enviado é muito grande.<br/>Limite".($_UP['tamanho_maximo'] / 1024)."<br/>Tamanho: ".($files['arquivo']['size'][$i] / 1024)." - Falha no documento: ".$i;
 					$retorno["sucesso"] = false;
 
 					return $retorno;
 				}
 
 				$nome = uniqid("imagem_");
-				$arquivos[] = $local."/".$nome.".pdf";
-				$valida += move_uploaded_file($dados['arquivo']['tmp_name'][$i], $local."/".$nome.".pdf");
+				$arquivos[] = $local."/".$nome.".".array_search($files["arquivo"]["type"][$i], $_UP["tipos_permitidos"]);
+				$valida += move_uploaded_file($files['arquivo']['tmp_name'][$i], $local."/".$nome.".pdf");
 			}
 
 			$retorno["sucesso"] = ($valida == ($total - $vazios) ? true : false);
 		} else {
-			if ( !empty($dados['arquivo']['tmp_name']) ) {
+			if (!empty($files['arquivo']['tmp_name'])) {
 				// Verificação do tipo de arquivo
-				if ( $dados['arquivo']['type'] != $_UP['tipos_permitidos']["xlsx"] ) {
+				if (!in_array($files['arquivo']['type'], $_UP['tipos_permitidos']["xlsx"])) {
 					$retorno["msg"] = "Arquivo enviado não é XLSX";
 					$retorno["sucesso"] = false;
 
@@ -80,16 +78,16 @@ class Utils{
 				}
 
 				// Faz a verificação do tamanho do arquivo
-				if ( $_UP['tamanho_maximo'] < $dados['arquivo']['size'] ) {
-					$retorno["msg"] = "O arquivo enviado é muito grande.<br/>Limite".($_UP['tamanho_maximo'] / 1024)."<br/>Tamanho: ".($dados['arquivo']['size'] / 1024);
+				if ( $_UP['tamanho_maximo'] < $files['arquivo']['size'] ) {
+					$retorno["msg"] = "O arquivo enviado é muito grande.<br/>Limite".($_UP['tamanho_maximo'] / 1024)."<br/>Tamanho: ".($files['arquivo']['size'] / 1024);
 					$retorno["sucesso"] = false;
 
 					return $retorno;
 				}
 
 				$nome = uniqid("arquivo_");
-				$arquivos = $local."/".$nome.".xlsx";
-				$valida = move_uploaded_file($dados['arquivo']['tmp_name'], $arquivos);
+				$arquivos = $local."/".$nome.".".array_search($files["arquivo"]["type"], $_UP["tipos_permitidos"]);
+				$valida = move_uploaded_file($files['arquivo']['tmp_name'], $arquivos);
 			}
 
 			$retorno["sucesso"] = $valida;
@@ -168,6 +166,7 @@ class Utils{
 	}
 
 	public function sanitizeString($str) {
+		$str = trim($str);
 		$str = preg_replace('/[áàãâä]/ui', 'a', $str);
 		$str = preg_replace('/[éèêë]/ui', 'e', $str);
 		$str = preg_replace('/[íìîï]/ui', 'i', $str);
@@ -196,11 +195,7 @@ class Utils{
 			}
 			return $retorno;
 		} catch (Exception $e) {
-			$this->enviaEmail(
-				array("Admin" => 'desenvolvimento.fenix@portaldedocumentos.com.br'),
-				"Erro no Parse do Excel - Renegociações",
-				$e->getMessage()
-			);
+			echo $e->getMessage();
 			return false;
 		}
 	}

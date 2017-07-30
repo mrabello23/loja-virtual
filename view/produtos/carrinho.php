@@ -39,7 +39,7 @@
 	</div>
 
 	<?php include "../../incs/menu_lateral.php"; ?>
-	<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+	<div class="col-lg-10 col-md-9 col-sm-9 col-xs-12">
 		<table class="table table-bordered">
 			<thead>
 				<tr>
@@ -81,10 +81,13 @@
 				</tr>
 			</tbody>
 		</table>
-
 		<div class="row">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				<a href="#" class="btn btn-primary pull-right">Finalizar Pedido de Orçamento</a>
+				<?php if (isset($_SESSION["auth"]) && $_SESSION["auth"]): ?>
+					<a href="#" class="btn btn-primary pull-right">Finalizar Orçamento</a>
+				<?php else: ?>
+					<a href="<?=BASE_URL;?>admin/view/index.php" class="btn btn-primary pull-right">Acessar Conta</a>
+				<?php endif; ?>
 			</div>
 		</div>
 	</div> <!-- /.col-md-10 -->

@@ -25,7 +25,7 @@
 
 	<?php include "../../incs/menu_lateral.php"; ?>
 
-	<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+	<div class="col-lg-10 col-md-9 col-sm-9 col-xs-12">
 		<div class="row">
 			<div class="col-lg-7 col-md-7 col-sm-6 col-xs-12">
 				<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">

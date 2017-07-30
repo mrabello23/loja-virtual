@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		
+
 		<meta name="description" content="Produtos inovadores e com a mais alta qualidade do mercado">
 	    <meta name="author" content="">
 	    <link rel="icon" href="<?=BASE_URL;?>favicon.ico">
@@ -11,12 +11,12 @@
 		<title>Loja Virtual</title>
 		<link rel="stylesheet" href="<?=BASE_URL;?>libs/bootstrap_3.3.6/css/bootstrap.min.css">
 		<link rel="stylesheet" href="<?=BASE_URL;?>libs/bootstrap_3.3.6/css/datepicker.css">
-		<link rel="stylesheet" href="<?=BASE_URL;?>css/main.css">
+		<link rel="stylesheet" href="<?=BASE_URL;?>css/main.css?<?=date("YH");?>">
 		<script src="<?=BASE_URL;?>libs/jquery/jquery-2.2.0.js" type="text/javascript" charset="utf-8"></script>
 		<script src="<?=BASE_URL;?>libs/bootstrap_3.3.6/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="<?=BASE_URL;?>libs/bootstrap_3.3.6/js/datepicker.js" type="text/javascript" charset="utf-8"></script>
 		<script src="<?=BASE_URL;?>libs/jquerymask/jquery.mask.min.js" type="text/javascript" charset="utf-8"></script>
-		<script src="<?=BASE_URL;?>js/main.js" type="text/javascript" charset="utf-8"></script>
+		<script src="<?=BASE_URL;?>js/main.js?<?=date("YH");?>" type="text/javascript" charset="utf-8"></script>
 		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 	    <style>
 			@import url('https://fonts.googleapis.com/css?family=Montserrat');
