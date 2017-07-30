@@ -40,7 +40,6 @@ class UsuarioModel {
 		);
 	}
 
-
 	public function salvarContato($dados, $id = ""){
 		if (!empty($id)) {
 			return $this->bd->alterar(
@@ -50,6 +49,22 @@ class UsuarioModel {
 
 		return $this->bd->salvar(
 			"tel_cliente", $dados
+		);
+	}
+
+	public function buscarPorCondicao($condicao){
+		if (isset($condicao["email"]) && !empty($condicao["email"])) {
+			$whereClause = " AND email = \"{$condicao["email"]}\"";
+		}
+
+		if (isset($condicao["cpfCnpj"]) && !empty($condicao["cpfCnpj"])) {
+			$whereClause = " AND cpf = \"{$condicao["cpfCnpj"]}\"";
+		}
+
+		return $this->bd->query(
+			"SELECT C.*
+			FROM cliente AS C,
+			WHERE 0 = 0 ".$whereClause
 		);
 	}
 }

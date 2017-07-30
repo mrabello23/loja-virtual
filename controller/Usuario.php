@@ -53,6 +53,22 @@ class Usuario {
 			exit;
 		}
 
+		if ($this->model->buscarPorCondicao(array("cpfCnpj" => $dados["cpfCnpj"]))) {
+			if ($this->model->buscarPorCondicao(array("email" => $dados["email"]))) {
+				$_SESSION['msg_tipo'] = 'Erro';
+				$_SESSION['msg'] = 'E-mail em uso por outro usuário.';
+
+				return false;
+				exit;
+			}
+
+			$_SESSION['msg_tipo'] = 'Erro';
+			$_SESSION['msg'] = 'CPF / CNPJ em uso por outro usuário.';
+
+			return false;
+			exit;
+		}
+
 		$salvar = array(
 			"nome" 	=> $dados["nome"],
 			"email" => $dados["email"],
