@@ -38,24 +38,27 @@
 				</li>
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-						<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Carrinho de Produtos <span class="caret"></span>
 						<?=(!empty($_SESSION["totalProduto"]) ? "<span class=\"badge\">".array_sum($_SESSION["totalProduto"])."</span>" : "");?>
+						<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Carrinho de Produtos <span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu">
-						<?php if (!empty($_SESSION["nomeProduto"]) && !empty($_SESSION["totalProduto"])): ?>
+						<?php if (
+							(isset($_SESSION["nomeProduto"]) && !empty($_SESSION["nomeProduto"])) && 
+							(isset($_SESSION["totalProduto"]) && !empty($_SESSION["totalProduto"]))
+						): ?>
 							<?php foreach ($_SESSION["nomeProduto"] as $key => $value): ?>
 								<li>
 									<a href="#">
 										<?=str_pad($_SESSION["totalProduto"][$key], 2, "0", STR_PAD_LEFT)." - ".ucwords(strtolower($value));?>
 									</a>
 								</li>
-								<li role="separator" class="divider"></li>
-								<li>
-									<a href="<?=BASE_URL;?>view/produtos/carrinho.php">
-										<span class="glyphicon glyphicon-check" aria-hidden="true"></span> Finalizar
-									</a>
-								</li>
 							<?php endforeach; ?>
+							<li role="separator" class="divider"></li>
+							<li>
+								<a href="<?=BASE_URL;?>view/produtos/carrinho.php">
+									<span class="glyphicon glyphicon-check" aria-hidden="true"></span> Finalizar
+								</a>
+							</li>
 						<?php else: ?>
 							<li>
 								<a href="#">

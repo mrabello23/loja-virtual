@@ -1,11 +1,12 @@
 <?php
 	require_once "../../config.php";
-	include_once "../../incs/cabecalho.php";
-	include_once "../../incs/menu_superior.php";
 
 	if (isset($_SESSION["auth"]) && $_SESSION["auth"]) {
 		header('Location: '.BASE_URL.'admin/view/usuarios/index.php?id='.$_SESSION["id"]);
 	}
+
+	include_once "../../incs/cabecalho.php";
+	include_once "../../incs/menu_superior.php";
 ?>
 
 <div class="row">

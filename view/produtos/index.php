@@ -73,7 +73,9 @@
 			<div class="col-lg-5 col-md-5 col-sm-6 col-xs-12 pull-right">
 				<div class="thumbnail">
 					<div class="caption">
-						<h3 class="pull-right">R$ 24,99</h3>
+						<h3>
+							R$ <?=number_format(($produto["dados"][0]["preco_compra"] + ($produto["dados"][0]["preco_compra"] * ($produto["dados"][0]["margem"] / 100))), 2, ",", ",");?>
+						</h3>
 						<p>
 							<ul class="list-unstyled">
 								<li><strong>Montadora:</strong> <?=ucwords(strtolower($produto["dados"][0]["montadora"]));?></li>
@@ -94,7 +96,7 @@
 
 								<a href="<?=BASE_URL;?>acoes/carrinho.php?acao=adicionar&id=<?=$id;?>" class="btn btn-primary btn-sm">Adicionar</a>
 							</p>
-							<p> Produto em estoque </p>
+							<p><?=($produto["dados"][0]["quantidade"] > 0 ? "Produto em estoque" : "Produto esgotado");?></p>
 						</div>
 					</div>
 				</div>

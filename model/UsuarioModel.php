@@ -11,7 +11,7 @@ class UsuarioModel {
 	public function entrar($usuario, $senha, $ativo = true){
 		return $this->bd->query(
 			"SELECT C.*, TC.* 
-			FROM cliente AS C,
+			FROM cliente AS C
 			LEFT JOIN tel_cliente AS TC ON TC.idCliente = C.id_cliente
 			WHERE C.email = \"{$usuario}\"
 				AND C.senha = \"{$senha}\"
@@ -22,7 +22,7 @@ class UsuarioModel {
 	public function listarId($id){
 		return $this->bd->query(
 			"SELECT C.*, TC.* 
-			FROM cliente AS C,
+			FROM cliente AS C
 			LEFT JOIN tel_cliente AS TC ON TC.idCliente = C.id_cliente
 			WHERE C.id_cliente = {$id}"
 		);
@@ -63,7 +63,7 @@ class UsuarioModel {
 
 		return $this->bd->query(
 			"SELECT C.*
-			FROM cliente AS C,
+			FROM cliente AS C
 			WHERE 0 = 0 ".$whereClause
 		);
 	}

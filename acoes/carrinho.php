@@ -8,6 +8,7 @@ $produtos = new Produto();
 $produto = $produtos->listar("", 0, $id);
 
 if (!empty($produto["dados"][0])) {
+	$_SESSION["carrinho"][$id] = $produto["dados"][0];
 	$_SESSION["nomeProduto"][$id] = $produto["dados"][0]["nome"];
 
 	if (!isset($_SESSION["totalProduto"][$id])) {
@@ -23,6 +24,8 @@ if (!empty($produto["dados"][0])) {
 				$_SESSION["totalProduto"][$id]--;
 			} else {
 				unset($_SESSION["totalProduto"][$id]);
+				unset($_SESSION["nomeProduto"][$id]);
+				unset($_SESSION["carrinho"][$id]);
 			}
 		break;
 		case "limpar":

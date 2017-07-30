@@ -8,8 +8,8 @@
 			"id" 	=> "",
 			"nome" 	=> "",
 			"email" => "",
-			"cpfCnpj" => "",
-			"telefone" => ""
+			"cpf" => "",
+			"numero" => ""
 		)
 	);
 
@@ -54,7 +54,7 @@
 				</div>
 				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
 					<label for="cpfCnpj">* CPF / CNPJ: </label>
-					<input type="text" name="cpfCnpj" id="cpfCnpj" class="form-control obrigatorio cpfCnpj" value="<?=$dados[0]["cpfCnpj"];?>" />
+					<input type="text" name="cpfCnpj" id="cpfCnpj" class="form-control obrigatorio cpfCnpj" value="<?=$dados[0]["cpf"];?>" />
 				</div>
 			</div>
 			<div class="row form-group">
@@ -64,7 +64,7 @@
 				</div>
 				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
 					<label for="telefone">* TELEFONE: </label>
-					<input type="text" name="telefone" id="telefone" class="form-control obrigatorio tel" value="<?=$dados[0]["telefone"];?>" />
+					<input type="text" name="telefone" id="telefone" class="form-control obrigatorio tel" value="<?=$dados[0]["numero"];?>" />
 				</div>
 			</div>
 			<div class="row form-group">

@@ -88,12 +88,21 @@ class Usuario {
 			$salvarContato = array(
 				"numero" 	=> $dados["telefone"],
 				"idCliente" => $idCliente,
-				"tipo" 		=> ""
+				"tipo" 		=> 1
 			);
 
-			return $this->model->salvarContato($salvarContato);
-		}
+			$idContato = $this->model->salvarContato($salvarContato);
 
-		return $idCliente;
+			if ($idContato) {
+				$_SESSION["auth"] 	= true;
+				$_SESSION["id"] 	= $idCliente;
+				$_SESSION["email"] 	= $dados["email"];
+				$_SESSION["nome"] 	= $dados["nome"];
+				$_SESSION["cpf"] 	= $dados["cpf"];
+				$_SESSION["telefone"] = $dados["telefone"];
+
+				header('Location: '.BASE_URL.'admin/view/orcamentos/index.php');
+			}
+		}
 	}
 }

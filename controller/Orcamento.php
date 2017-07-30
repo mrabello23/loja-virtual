@@ -13,22 +13,49 @@ class Orcamento {
 
 	public function listar($url = "", $pagina = 0, $id = ""){
 		$dados = array();
-		$dados["dados"] = $this->model->listar($id);
+		$retorno = $this->model->listar($id);
 
-		/** Paginação */
-		if (!empty($url)) {
-			$inicio = 1;
-			$limite = 12;
-			$totalPorPagina = 12;
-
-			if ($pagina > 1) {
-				$limite = $pagina * $limite;
-				$inicio = $limite - ($totalPorPagina - 1);
+		if (!empty($retorno)) {
+			foreach ($retorno as $key => $value) {
+				$dados[$value["nr_pedido"]][] = $value;
 			}
-
-			$dados["paginacao"] = $this->utils->paginacao($url, $inicio, count($dados["dados"]), $limite);
 		}
 
 		return $dados;
+	}
+
+	public function salvar(){
+		if ((isset($_SESSION["nomeProduto"]) && !empty($_SESSION["nomeProduto"])) && 
+			(isset($_SESSION["totalProduto"]) && !empty($_SESSION["totalProduto"]))
+		) {
+			$salvar = array(
+				"nr_pedido" => time(),
+				"id_cliente" => $_SESSION["id"]
+			);
+
+			$idOrcamento = $this->model->salvar($salvar);
+
+			if ($idOrcamento) {
+				$modelProduto = new ProdutoModel();
+				$total = 0;
+
+				foreach ($_SESSION["carrinho"] as $key => $value) {
+					$salvarProduto = array(
+						"valor" => $value["preco_compra"] + ($value["preco_compra"] * ($value["margem"] / 100)),
+						"id_produto" 	=> $value["id_produto"],
+						"id_orcamento" 	=> $idOrcamento,
+						"quantidade" 	=> $_SESSION["totalProduto"][$value["id_produto"]]
+					);
+
+					$total += $modelProduto->salvarOrcamento($salvarProduto);
+				}
+
+				if ($total == count($_SESSION["carrinho"])) {
+					return true;
+				}
+			}
+		}
+
+		return false;
 	}
 }

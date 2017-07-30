@@ -17,6 +17,9 @@ body {
 .navbar .navbar-nav .dropdown-menu a{
 	font-size: 12px;
 }
+.align-right{
+	text-align: right !important;
+}
 footer {
 	background-color: #101010;
 	width: 100%;
