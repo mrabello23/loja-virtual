@@ -15,7 +15,7 @@
 	$produtos = new Produto();
 	$produto = $produtos->listar($url, $pagina, $id);
 
-	echo "<pre>"; print_r($produto); echo "</pre>";
+	// echo "<pre>"; print_r($produto); echo "</pre>";
 ?>
 
 <div class="row">
@@ -142,7 +142,7 @@
 								</a>
 							</h4>
 						</div>
-						<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+						<div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
 							<div class="panel-body">
 								Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 
 								3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. 
