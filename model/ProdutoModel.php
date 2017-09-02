@@ -28,9 +28,8 @@ class ProdutoModel {
 	public function listarPorCategoria($categoria){
 		return $this->bd->query(
 			"SELECT p.*, 
-				m.nome AS modelo, 
 				(SELECT c.nome FROM categoria c WHERE c.id_categoria = p.id_categoria) AS categoria, 
-				(SELECT i.foto FROM imagem i WHERE i.id_imagem = p.id_imagem) AS imagem, 
+				(SELECT i.foto FROM imagem i WHERE i.id_imagem = p.id_imagem) AS imagem
 			FROM produto p 
 			WHERE p.ativo = 1 
 				AND p.mostra_vitrine = 1 

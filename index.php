@@ -33,8 +33,8 @@
 
 	<?php include "incs/menu_lateral.php"; ?>
 
-	<div class="col-lg-10 col-md-9 col-sm-9 col-xs-12">
-		<?php if (!empty($produtos["dados"])): ?>
+	<?php if (!empty($produtos["dados"])): ?>
+		<div class="col-lg-10 col-md-9 col-sm-9 col-xs-12">
 			<?php foreach ($produtos["dados"] as $key => $value): ?>
 				<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 box-produto">
 					<div class="thumbnail">
@@ -89,11 +89,15 @@
 					</div>
 				</div>
 			<?php endforeach; ?>
-		<?php endif; ?>
-	</div> <!-- /.col-md-10 -->
-	<div class="col-lg-10 col-md-9 col-sm-9 col-xs-12">
-		<?php echo $produtos["paginacao"]; ?>
-	</div>
+		</div> <!-- /.col-md-10 -->
+		<div class="col-lg-10 col-md-9 col-sm-9 col-xs-12">
+			<?php echo $produtos["paginacao"]; ?>
+		</div>
+	<?php else: ?>
+		<div class="col-lg-10 col-md-9 col-sm-9 col-xs-12">
+			Sem produtos cadastrados.
+		</div>
+	<?php endif; ?>
 </div> <!-- /.row -->
 
 <?php include "incs/rodape.php"; ?>
