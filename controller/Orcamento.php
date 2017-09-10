@@ -15,13 +15,15 @@ class Orcamento {
 		$dados = array();
 		$retorno = $this->model->listar($id);
 
-		if (!empty($retorno)) {
-			foreach ($retorno as $key => $value) {
-				$dados[$value["nr_pedido"]][] = $value;
-			}
-		}
+		// echo "<pre>"; print_r($retorno); echo "</pre>"; exit;
 
-		return $dados;
+		// if (!empty($retorno)) {
+		// 	foreach ($retorno as $key => $value) {
+		// 		$dados[$value["nr_pedido"]][] = $value;
+		// 	}
+		// }
+
+		return $retorno;
 	}
 
 	public function salvar(){
