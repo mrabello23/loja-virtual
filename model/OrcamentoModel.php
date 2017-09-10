@@ -31,9 +31,17 @@ class OrcamentoModel {
 
 	public function salvar($dados, $id = ""){
 		if (!empty($id)) {
-			return $this->bd->alterar("orcamento", $dados, array("id" => $id));
+			return $this->bd->alterar("venda", $dados, array("id_venda" => $id));
 		}
 
-		return $this->bd->salvar("orcamento", $dados);
+		return $this->bd->salvar("venda", $dados);
+	}
+
+	public function salvarItensVenda($dados, $id = ""){
+		if (!empty($id)) {
+			return $this->bd->alterar("item_venda", $dados, array("id_item_venda" => $id));
+		}
+
+		return $this->bd->salvar("item_venda", $dados);
 	}
 }
