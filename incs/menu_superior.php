@@ -7,7 +7,10 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="<?=BASE_URL;?>">Casa de Material do Ônibus</a>
+			<a class="navbar-brand" href="<?=BASE_URL;?>">
+				<!-- <img src="<?=BASE_URL;?>imagens/logo.png" width="100" alt="" /> -->
+				Casa de Material do Ônibus
+			</a>
 		</div>
 
 		<div class="collapse navbar-collapse" id="navbarCollapse">

@@ -39,13 +39,13 @@
 				<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 box-produto">
 					<div class="thumbnail">
 						<a href="<?=BASE_URL;?>view/produtos/index.php?id=<?=$value["id_produto"];?>">
-							<img src="<?=BASE_URL;?>imagens/produtos/320x180.png" alt="">
-							<!-- <img class="imgProduto" width="320" height="180" src="data:image;base64,<?=base64_encode($value["imagem"]);?>" alt=""> -->
+							<!-- <img src="<?=BASE_URL;?>imagens/produtos/320x180.png" alt=""> -->
+							<img class="imgProduto" width="320" height="180" src="data:image;base64,<?=base64_encode($value["imagem"][0]["foto"]);?>" alt="">
 						</a>
 						<div class="caption">
 							<h4>
 								<a href="<?=BASE_URL;?>view/produtos/index.php?id=<?=$value["id_produto"];?>">
-									<?=ucwords(strtolower($value["nome"]));?>
+									<?=ucwords(strtolower(utf8_encode($value["nome"])));?>
 								</a>
 							</h4>
 							<?php if (!empty($value["compativel"])): ?>
@@ -61,6 +61,8 @@
 									</ul>
 								</div>
 							<?php endif ?>
+
+							<hr/>
 
 							<div class="ratings">
 								<?php
