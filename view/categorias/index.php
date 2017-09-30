@@ -15,7 +15,7 @@
 
 <div class="row">
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-		<h2>Categorias</h2><hr/>
+		<h2><?=$produtos["dados"][0]["categoria"];?></h2><hr/>
 	</div>
 
 	<?php include "../../incs/menu_lateral.php"; ?>
