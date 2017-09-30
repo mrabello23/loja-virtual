@@ -15,18 +15,6 @@
 
 <div class="row">
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-		<div class="col-md-8 form-group"></div>
-		<div class="col-md-3 form-group">
-			<input type="text" name="" class="form-control input-sm" placeholder="Buscar">
-		</div>
-		<div class="col-md-1 form-group">
-			<a href="#" class="btn btn-default btn-sm">
-				<span class="glyphicon glyphicon-search" aria-hidden="true"></span> Buscar
-			</a>
-		</div>
-	</div>
-
-	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 		<h2>Produtos em destaque</h2>
 		<hr/>
 	</div>
@@ -39,13 +27,13 @@
 				<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 box-produto">
 					<div class="thumbnail">
 						<a href="<?=BASE_URL;?>view/produtos/index.php?id=<?=$value["id_produto"];?>">
-							<!-- <img src="<?=BASE_URL;?>imagens/produtos/320x180.png" alt=""> -->
-							<img class="imgProduto" width="320" height="180" src="data:image;base64,<?=base64_encode($value["imagem"][0]["foto"]);?>" alt="">
+							<img src="<?=BASE_URL;?>imagens/produtos/320x180.png" alt="">
+							<!-- <img class="imgProduto" width="320" height="180" src="data:image;base64,<?=base64_encode($value["imagem"][0]["foto"]);?>" alt=""> -->
 						</a>
 						<div class="caption">
 							<h4>
 								<a href="<?=BASE_URL;?>view/produtos/index.php?id=<?=$value["id_produto"];?>">
-									<?=ucwords(strtolower(utf8_encode($value["nome"])));?>
+									<?=ucwords(strtolower($value["nome"]));?>
 								</a>
 							</h4>
 							<?php if (!empty($value["compativel"])): ?>
