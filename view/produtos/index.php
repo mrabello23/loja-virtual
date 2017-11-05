@@ -107,7 +107,7 @@
 									<a href="<?=BASE_URL;?>acoes/carrinho.php?acao=remover&id=<?=$id;?>" class="btn btn-danger btn-sm">Remover</a>
 								<?php endif; ?>
 
-								<a href="<?=BASE_URL;?>acoes/carrinho.php?acao=adicionar&id=<?=$id;?>" class="btn btn-primary btn-sm">Adicionar</a>
+								<a href="<?=BASE_URL;?>acoes/carrinho.php?acao=adicionar&id=<?=$id;?>" class="btn btn-primary btn-sm btn-add">Adicionar</a>
 							</div>
 						</div>
 					</div>

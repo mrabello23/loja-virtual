@@ -18,7 +18,7 @@
 		<div class="collapse navbar-collapse" id="navbarCollapse">
 			<form class="navbar-form navbar-left" action="<?=BASE_URL;?>view/produtos/buscar.php" method="GET">
 				<div class="form-group">
-					<input type="text" name="campoBusca" class="form-control obrigatorio" required>
+					<input type="text" name="campoBusca" class="form-control" required>
 				</div>
 				<input type="submit" class="btn btn-default" value="Buscar" />
 			</form>
@@ -49,8 +49,13 @@
 				</li>
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-						<?=(!empty($_SESSION["totalProduto"]) ? "<span class=\"badge\">".array_sum($_SESSION["totalProduto"])."</span>" : "");?>
-						<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Carrinho de Produtos <span class="caret"></span>
+						<?php if (!empty($_SESSION["totalProduto"])): ?>
+							<span class="badge" id="badge_produto" tabindex="0" data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="Produto adicionado ao carrinho.">
+								<?=array_sum($_SESSION["totalProduto"]);?>
+							</span>
+						<?php endif; ?>
+
+						<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true" id="span_carrinho"></span> Carrinho de Produtos <span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu">
 						<?php if (

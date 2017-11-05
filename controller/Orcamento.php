@@ -54,10 +54,13 @@ class Orcamento {
 						"venda_id_venda" => $idOrcamento
 					);
 
-					$total += $this->model->salvarItensVenda($itemVenda);
+					if ($this->model->salvarItensVenda($itemVenda)) {
+						$total++;
+					}
 				}
 
 				if ($total == count($_SESSION["carrinho"])) {
+					$_SESSION["orcamento_salvo"] = true;
 					return true;
 				}
 			}
